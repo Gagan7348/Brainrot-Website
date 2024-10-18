@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sigma Male Quotes</title>
+  <style>
+    body {
+      background-image: url(pic.png); /* Replace with your background image */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin-top: 20vh;
+      position: relative;
+    }
+
+    /* Dark overlay to improve readability over the image */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6); /* A dark transparent overlay */
+      z-index: -1;
+    }
+
+    .quote-container {
+      padding: 20px;
+      border-radius: 10px;
+      background-color: rgba(52, 73, 94, 0.85);
+      display: inline-block;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .quote {
+      font-size: 2em;
+      animation: fadeIn 1s ease-in-out, shakeEffect 0.5s;
+    }
+
+    @keyframes shakeEffect {
+      10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+      }
+      20%, 80% {
+        transform: translate3d(2px, 0, 0);
+      }
+      30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+      }
+      40%, 60% {
+        transform: translate3d(4px, 0, 0);
+      }
+    }
+
+    .rule-number {
+      font-size: 1.5em;
+      color: #ecf0f1;
+      margin-top: 10px;
+    }
+
+    .cool-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      background-color: #1abc9c;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 255, 155, 0.7);
+    }
+
+    .cool-button:hover {
+      background-color: #16a085;
+      box-shadow: 0 0 20px rgba(0, 255, 155, 1);
+    }
+
+    .cool-button:active {
+      background-color: #148f77;
+      box-shadow: 0 0 25px rgba(0, 255, 155, 1);
+    }
+
+    /* Styles for the audio controls */
+    .audio-controls {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .audio-controls button {
+      padding: 10px;
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .audio-controls button:hover {
+      background-color: #16a085;
+      box-shadow: 0 0 10px rgba(0, 255, 155, 0.7);
+    }
+
+    .volume-slider {
+      width: 100px;
+    }
+
+    /* Lunchly Ad Styles */
+    .lunchly-ad {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 200px;
+      padding: 15px;
+      background: linear-gradient(135deg, #2980b9, #c0392b); /* Bluish-red gradient */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      font-family: Arial, sans-serif;
+      color: #ffffff; /* Change text color to white for better contrast */
+      text-align: center;
+      animation: slideIn 0.5s ease;
+    }
+
+    .lunchly-ad video {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .lunchly-ad-close {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+      background-color: #c0392b;
+      border: none;
+      color: white;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      font-size: 1em;
+      line-height: 1;
+    }
+
+    /* Left Video Ad Styles */
+    .left-ad {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 200px;
+      padding: 15px;
+      background: linear-gradient(135deg, #2980b9, #c0392b); /* Same bluish-red gradient */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      font-family: Arial, sans-serif;
+      color: #ffffff; /* Change text color to white for better contrast */
+      text-align: center;
+      animation: slideIn 0.5s ease;
+    }
+
+    .left-ad video {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    /* Talk Tuah Countdown */
+    .podcast-countdown {
+      margin-top: 20px;
+      font-size: 1.5em;
+      color: #e74c3c;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="quote-container">
+    <div id="quote" class="quote">Loading your sigma rule...</div>
+    <div id="rule-number" class="rule-number"></div>
+    <button class="cool-button" id="new-quote-btn">Click here for a new quote</button>
+  </div>
+
+  <!-- Audio Controls -->
+  <div class="audio-controls">
+    <button id="play-music-btn">Play Music</button>
+    <button id="mute-btn">Mute</button>
+    <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.1" value="1">
+  </div>
+
+  <!-- Talk Tuah Podcast Countdown -->
+  <div id="podcast-countdown" class="podcast-countdown">
+    X hours till new Talk Tuah podcast episode
+  </div>
+
+  <!-- Left Video Ad -->
+  <div class="left-ad">
+    <video controls>
+      <source src="v09044g40000cagd1rjc77u4184b2leg.mov" type="video/mp4"> <!-- Replace with your left-side video -->
+      Your browser does not support the video tag.
+    </video>
+    <p>Check out our special offer!</p>
+  </div>
+
+  <!-- Lunchly Ad -->
+  <div id="lunchly-ad" class="lunchly-ad">
+    <button class="lunchly-ad-close" id="close-ad">X</button>
+    <video width="200" height="auto" controls>
+      <source src="ssstik.io_@hay_welch_1729231143930.mov" type="video/mp4"> <!-- Replace with your Lunchly ad video -->
+      Your browser does not support the video tag.
+    </video>
+    <p>Enjoy your meal with Lunchly!</p>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="background-music" src="v12044gd0000cs06cf7og65pdeu1rbh0.mp3" loop></audio> <!-- Replace with the path to your music file -->
+
+  <script src="script.js"></script>
+</body>
+</html>
